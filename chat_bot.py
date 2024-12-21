@@ -14,11 +14,10 @@ openai_api_key = os.getenv("OPENAI_API_KEY")
 if not openai_api_key:
     raise ValueError("A chave da API OpenAI não foi encontrada. Configure o arquivo .env.")
 
-# Caminho para o arquivo Excel
-file_path = "C:\\Users\\user\\Desktop\\CHAT\\TESTE.xlsx"
+file_path = "TESTE.xlsx"
 
 # Caminho para o logo
-logo_image_path = "C:\\Users\\user\\Desktop\\CHAT\\LOGO_SCAN_BRANCO.png"
+logo_image_path = "LOGO_SCAN_BRANCO.png"
 
 
 # Configuração do modelo de linguagem
