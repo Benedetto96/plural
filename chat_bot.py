@@ -17,7 +17,7 @@ if not openai_api_key:
 file_path = "TESTE.xlsx"
 
 # Caminho para o logo
-logo_image_path = "LOGO_SCAN_BRANCO.png"
+logo_image_path = "LOGO_NOVO.png"
 
 
 # Configuração do modelo de linguagem
