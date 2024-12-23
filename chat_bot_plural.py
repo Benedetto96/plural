@@ -17,7 +17,8 @@ if not openai_api_key:
 file_path = "TESTE.xlsx"
 
 # Caminho para o logo
-logo_image_path = "LOGO_NOVO.png"
+logo_image_path = "PLURAL_LOGO.png"
+
 
 # Configuração do modelo de linguagem
 chat = ChatOpenAI(
