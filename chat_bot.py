@@ -19,7 +19,6 @@ file_path = "TESTE.xlsx"
 # Caminho para o logo
 logo_image_path = "LOGO_NOVO.png"
 
-
 # Configuração do modelo de linguagem
 chat = ChatOpenAI(
     model="gpt-3.5-turbo",
@@ -65,6 +64,10 @@ st.markdown(
 
 st.title("Chatbot da Blu Logistics part of Scan Logistics")
 st.write("Digite sua pergunta no campo abaixo para obter uma resposta.")
+
+# Limpar o histórico sempre que a página é carregada
+if "chat_history" in st.session_state:
+    del st.session_state["chat_history"]
 
 @st.cache_resource
 def prepare_qdrant(data):
