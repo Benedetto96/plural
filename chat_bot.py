@@ -66,8 +66,8 @@ st.title("Chatbot da Blu Logistics part of Scan Logistics")
 st.write("Digite sua pergunta no campo abaixo para obter uma resposta.")
 
 # Limpar o histórico sempre que a página é carregada
-if "chat_history" in st.session_state:
-    del st.session_state["chat_history"]
+if "chat_history" not in st.session_state:
+    st.session_state.chat_history = []
 
 @st.cache_resource
 def prepare_qdrant(data):
@@ -119,21 +119,18 @@ Pergunta do usuário: {query}"""
 
 query = st.text_input("Digite sua pergunta:")
 
-if "chat_history" not in st.session_state:
-    st.session_state.chat_history = []
+# Processar pergunta e gerar resposta
+if st.button("Enviar") and query.strip():
+    prompt_message = {"role": "user", "content": custom_prompt(query)}
+    messages = [
+        {"role": "system", "content": "Você é um assistente útil que responde perguntas com base no contexto fornecido e no seu conhecimento externo."},
+        prompt_message
+    ]
+    response = chat.invoke(messages)
+    st.session_state.chat_history.insert(0, {"pergunta": query, "resposta": response.content})
+    query = ""  # Limpar o campo de entrada após o envio
 
-if st.button("Enviar"):
-    if query.strip():
-        prompt_message = {"role": "user", "content": custom_prompt(query)}
-        messages = [
-            {"role": "system", "content": "Você é um assistente útil que responde perguntas com base no contexto fornecido e no seu conhecimento externo."},
-            prompt_message
-        ]
-        response = chat.invoke(messages)
-        st.session_state.chat_history.insert(0, {"pergunta": query, "resposta": response.content})
-    else:
-        st.warning("Por favor, insira uma pergunta.")
-
+# Exibir o histórico de perguntas e respostas
 for entry in st.session_state.chat_history:
     st.markdown(f"<div class='question'><strong>Pergunta:</strong> {entry['pergunta']}</div>", unsafe_allow_html=True)
     st.markdown(f"<div class='answer'><strong>Resposta:</strong> {entry['resposta']}</div>", unsafe_allow_html=True)
