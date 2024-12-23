@@ -17,8 +17,7 @@ if not openai_api_key:
 file_path = "TESTE.xlsx"
 
 # Caminho para o logo
-logo_image_path = "PLURAL_LOGO.png"
-
+logo_image_path = "PLURAL_LOGO.jpg"
 
 # Configuração do modelo de linguagem
 chat = ChatOpenAI(
@@ -32,13 +31,17 @@ try:
     with open(logo_image_path, "rb") as logo_image_file:
         logo_image_base64 = base64.b64encode(logo_image_file.read()).decode("utf-8")
 except FileNotFoundError:
-    st.error("O arquivo do logo não foi encontrado. Certifique-se de que 'LOGO_SCAN_BRANCO.png' está no caminho correto.")
+    st.error("O arquivo do logo não foi encontrado. Certifique-se de que 'PLURAL_LOGO.jpg' está no caminho correto.")
     st.stop()
 
 # Exibir o logo na interface
 st.markdown(
     f"""
     <style>
+        body {{
+            background-color: #00008B;
+            color: #ffffff;
+        }}
         .logo {{
             position: absolute;
             top: -14px;
