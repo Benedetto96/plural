@@ -17,7 +17,7 @@ if not openai_api_key:
 file_path = "TESTE.xlsx"
 
 # Caminho para o logo
-logo_image_path = "PLURAL_LOGO.jpg"
+logo_image_path = "PLURAL_LOGO.png"
 
 # Configuração do modelo de linguagem
 chat = ChatOpenAI(
@@ -66,7 +66,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.title("Chatbot da Blu Logistics part of Scan Logistics")
+st.title("Chatbot da Plural Solutions")
 st.write("Digite sua pergunta no campo abaixo para obter uma resposta.")
 
 # Limpar o histórico sempre que a página é carregada
